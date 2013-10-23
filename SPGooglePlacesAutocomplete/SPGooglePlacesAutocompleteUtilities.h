@@ -12,6 +12,7 @@
 @class CLPlacemark;
 
 typedef enum {
+    SPPlaceTypeInvalid = -1,
     SPPlaceTypeGeocode = 0,
     SPPlaceTypeEstablishment
 } SPGooglePlacesAutocompletePlaceType;

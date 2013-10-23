@@ -30,7 +30,7 @@
         self.offset = NSNotFound;
         self.location = CLLocationCoordinate2DMake(-1, -1);
         self.radius = NSNotFound;
-        self.types = -1;
+        self.types = SPPlaceTypeInvalid;
     }
     return self;
 }
@@ -56,7 +56,7 @@
     if (language) {
         [url appendFormat:@"&language=%@", language];
     }
-    if (types != -1) {
+    if (types != SPPlaceTypeInvalid) {
         [url appendFormat:@"&types=%@", SPPlaceTypeStringForPlaceType(types)];
     }
     return url;
