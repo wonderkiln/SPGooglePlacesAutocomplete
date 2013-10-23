@@ -299,6 +299,7 @@
 		9C4A633615B64A3F00E15FBA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SPGooglePlacesAutocomplete/SPGooglePlacesAutocompleteDemo-Prefix.pch";
 				INFOPLIST_FILE = "SPGooglePlacesAutocomplete/SPGooglePlacesAutocompleteDemo-Info.plist";
@@ -311,6 +312,7 @@
 		9C4A633715B64A3F00E15FBA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SPGooglePlacesAutocomplete/SPGooglePlacesAutocompleteDemo-Prefix.pch";
 				INFOPLIST_FILE = "SPGooglePlacesAutocomplete/SPGooglePlacesAutocompleteDemo-Info.plist";

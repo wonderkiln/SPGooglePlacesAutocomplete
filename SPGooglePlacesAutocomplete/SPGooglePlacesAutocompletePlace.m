@@ -10,9 +10,9 @@
 #import "SPGooglePlacesPlaceDetailQuery.h"
 
 @interface SPGooglePlacesAutocompletePlace()
-@property (nonatomic, retain, readwrite) NSString *name;
-@property (nonatomic, retain, readwrite) NSString *reference;
-@property (nonatomic, retain, readwrite) NSString *identifier;
+@property (nonatomic, strong, readwrite) NSString *name;
+@property (nonatomic, strong, readwrite) NSString *reference;
+@property (nonatomic, strong, readwrite) NSString *identifier;
 @property (nonatomic, readwrite) SPGooglePlacesAutocompletePlaceType type;
 @end
 
@@ -21,10 +21,10 @@
 @synthesize name, reference, identifier, type;
 
 + (SPGooglePlacesAutocompletePlace *)placeFromDictionary:(NSDictionary *)placeDictionary {
-    SPGooglePlacesAutocompletePlace *place = [[[self alloc] init] autorelease];
-    place.name = [placeDictionary objectForKey:@"description"];
-    place.reference = [placeDictionary objectForKey:@"reference"];
-    place.identifier = [placeDictionary objectForKey:@"id"];
+    SPGooglePlacesAutocompletePlace *place = [[self alloc] init];
+    place.name = placeDictionary[@"description"];
+    place.reference = placeDictionary[@"reference"];
+    place.identifier = placeDictionary[@"id"];
     place.type = SPPlaceTypeFromDictionary(placeDictionary);
     return place;
 }
@@ -48,7 +48,7 @@
         if (error) {
             block(nil, nil, error);
         } else {
-            NSString *addressString = [placeDictionary objectForKey:@"formatted_address"];
+            NSString *addressString = placeDictionary[@"formatted_address"];
             [[self geocoder] geocodeAddressString:addressString completionHandler:^(NSArray *placemarks, NSError *error) {
                 if (error) {
                     block(nil, nil, error);
@@ -81,12 +81,5 @@
     }
 }
 
-- (void)dealloc {
-    [name release];
-    [reference release];
-    [identifier release];
-    [geocoder release];
-    [super dealloc];
-}
 
 @end

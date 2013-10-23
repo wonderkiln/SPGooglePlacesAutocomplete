@@ -17,7 +17,7 @@
 @synthesize reference, sensor, key, language, resultBlock;
 
 + (SPGooglePlacesPlaceDetailQuery *)query {
-    return [[[self alloc] init] autorelease];
+    return [[self alloc] init];
 }
 
 - (id)init {
@@ -34,14 +34,6 @@
     return [NSString stringWithFormat:@"Query URL: %@", [self googleURLString]];
 }
 
-- (void)dealloc {
-    [googleConnection release];
-    [responseData release];
-    [reference release];
-    [key release];
-    [language release];
-    [super dealloc];
-}
 
 - (NSString *)googleURLString {
     NSMutableString *url = [NSMutableString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/details/json?reference=%@&sensor=%@&key=%@",
@@ -53,8 +45,6 @@
 }
 
 - (void)cleanup {
-    [googleConnection release];
-    [responseData release];
     googleConnection = nil;
     responseData = nil;
     self.resultBlock = nil;
@@ -121,12 +111,12 @@
             [self failWithError:error];
             return;
         }
-        if ([[response objectForKey:@"status"] isEqualToString:@"OK"]) {
-            [self succeedWithPlace:[response objectForKey:@"result"]];
+        if ([response[@"status"] isEqualToString:@"OK"]) {
+            [self succeedWithPlace:response[@"result"]];
         }
                 
         // Must have received a status of UNKNOWN_ERROR, ZERO_RESULTS, OVER_QUERY_LIMIT, REQUEST_DENIED or INVALID_REQUEST.
-        NSDictionary *userInfo = [NSDictionary dictionaryWithObject:[response objectForKey:@"status"] forKey:NSLocalizedDescriptionKey];
+        NSDictionary *userInfo = @{NSLocalizedDescriptionKey: response[@"status"]};
         [self failWithError:[NSError errorWithDomain:@"com.spoletto.googleplaces" code:kGoogleAPINSErrorCode userInfo:userInfo]];
     }
 }

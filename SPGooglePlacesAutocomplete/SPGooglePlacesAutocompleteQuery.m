@@ -18,7 +18,7 @@
 @synthesize input, sensor, key, offset, location, radius, language, types, resultBlock;
 
 + (SPGooglePlacesAutocompleteQuery *)query {
-    return [[[self alloc] init] autorelease];
+    return [[self alloc] init];
 }
 
 - (id)init {
@@ -39,14 +39,6 @@
     return [NSString stringWithFormat:@"Query URL: %@", [self googleURLString]];
 }
 
-- (void)dealloc {
-    [googleConnection release];
-    [responseData release];
-    [input release];
-    [key release];
-    [language release];
-    [super dealloc];
-}
 
 - (NSString *)googleURLString {
     NSMutableString *url = [NSMutableString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/autocomplete/json?input=%@&sensor=%@&key=%@",
@@ -71,8 +63,6 @@
 }
 
 - (void)cleanup {
-    [googleConnection release];
-    [responseData release];
     googleConnection = nil;
     responseData = nil;
     self.resultBlock = nil;
@@ -90,7 +80,7 @@
     
     if (SPIsEmptyString(self.input)) {
         // Empty input string. Don't even bother hitting Google.
-        block([NSArray array], nil);
+        block(@[], nil);
         return;
     }
     
@@ -149,17 +139,17 @@
             [self failWithError:error];
             return;
         }
-        if ([[response objectForKey:@"status"] isEqualToString:@"ZERO_RESULTS"]) {
-            [self succeedWithPlaces:[NSArray array]];
+        if ([response[@"status"] isEqualToString:@"ZERO_RESULTS"]) {
+            [self succeedWithPlaces:@[]];
             return;
         }
-        if ([[response objectForKey:@"status"] isEqualToString:@"OK"]) {
-            [self succeedWithPlaces:[response objectForKey:@"predictions"]];
+        if ([response[@"status"] isEqualToString:@"OK"]) {
+            [self succeedWithPlaces:response[@"predictions"]];
             return;
         }
         
         // Must have received a status of OVER_QUERY_LIMIT, REQUEST_DENIED or INVALID_REQUEST.
-        NSDictionary *userInfo = [NSDictionary dictionaryWithObject:[response objectForKey:@"status"] forKey:NSLocalizedDescriptionKey];
+        NSDictionary *userInfo = @{NSLocalizedDescriptionKey: response[@"status"]};
         [self failWithError:[NSError errorWithDomain:@"com.spoletto.googleplaces" code:kGoogleAPINSErrorCode userInfo:userInfo]];
     }
 }
