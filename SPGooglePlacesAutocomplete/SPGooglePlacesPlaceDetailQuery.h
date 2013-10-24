@@ -15,7 +15,11 @@
 
 @property (nonatomic, copy, readonly) SPGooglePlacesPlaceDetailResultBlock resultBlock;
 
-+ (SPGooglePlacesPlaceDetailQuery *)query;
+/*
+ * Designated initializer
+ * Must initialize an instance with a valid Google API key
+ */
+- (id)initWithApiKey:(NSString *)apiKey;
 
 /*!
  Issues a Place Details request and pulls down the results. If called twice, the first request will be cancelled and the request will be re-issued using the current property values.

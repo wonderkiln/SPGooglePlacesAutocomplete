@@ -17,16 +17,12 @@
 
 @synthesize input, sensor, key, offset, location, radius, language, types, resultBlock;
 
-+ (SPGooglePlacesAutocompleteQuery *)query {
-    return [[self alloc] init];
-}
-
-- (id)init {
+- (id)initWithApiKey:(NSString *)apiKey {
     self = [super init];
     if (self) {
         // Setup default property values.
         self.sensor = YES;
-        self.key = kGoogleAPIKey;
+        self.key = apiKey;
         self.offset = NSNotFound;
         self.location = CLLocationCoordinate2DMake(-1, -1);
         self.radius = NSNotFound;
@@ -42,8 +38,8 @@
 
 - (NSString *)googleURLString {
     NSMutableString *url = [NSMutableString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/autocomplete/json?input=%@&sensor=%@&key=%@",
-                                                             [input stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
-                                                             SPBooleanStringForBool(sensor), key];
+                            [input stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+                            SPBooleanStringForBool(sensor), key];
     if (offset != NSNotFound) {
         [url appendFormat:@"&offset=%u", offset];
     }
@@ -74,7 +70,7 @@
 }
 
 - (void)fetchPlaces:(SPGooglePlacesAutocompleteResultBlock)block {
-    if (!SPEnsureGoogleAPIKey()) {
+    if (!self.key) {
         return;
     }
     

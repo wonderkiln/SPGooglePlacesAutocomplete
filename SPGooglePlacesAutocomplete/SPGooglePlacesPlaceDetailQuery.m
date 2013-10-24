@@ -16,16 +16,13 @@
 
 @synthesize reference, sensor, key, language, resultBlock;
 
-+ (SPGooglePlacesPlaceDetailQuery *)query {
-    return [[self alloc] init];
-}
-
-- (id)init {
+- (id)initWithApiKey:(NSString *)apiKey
+{
     self = [super init];
     if (self) {
         // Setup default property values.
         self.sensor = YES;
-        self.key = kGoogleAPIKey;
+        self.key = apiKey;
     }
     return self;
 }
@@ -56,7 +53,7 @@
 }
 
 - (void)fetchPlaceDetail:(SPGooglePlacesPlaceDetailResultBlock)block {
-    if (!SPEnsureGoogleAPIKey()) {
+    if (!self.key) {
         return;
     }
     
@@ -114,7 +111,7 @@
         if ([response[@"status"] isEqualToString:@"OK"]) {
             [self succeedWithPlace:response[@"result"]];
         }
-                
+        
         // Must have received a status of UNKNOWN_ERROR, ZERO_RESULTS, OVER_QUERY_LIMIT, REQUEST_DENIED or INVALID_REQUEST.
         NSDictionary *userInfo = @{NSLocalizedDescriptionKey: response[@"status"]};
         [self failWithError:[NSError errorWithDomain:@"com.spoletto.googleplaces" code:kGoogleAPINSErrorCode userInfo:userInfo]];

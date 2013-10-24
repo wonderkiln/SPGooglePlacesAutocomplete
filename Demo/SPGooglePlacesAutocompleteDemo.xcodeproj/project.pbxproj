@@ -84,10 +84,10 @@
 				6B35175618179A1400F0BD25 /* SPGooglePlacesAutocompletePlace.m */,
 				6B35175718179A1400F0BD25 /* SPGooglePlacesAutocompleteQuery.h */,
 				6B35175818179A1400F0BD25 /* SPGooglePlacesAutocompleteQuery.m */,
-				6B35175918179A1400F0BD25 /* SPGooglePlacesAutocompleteUtilities.h */,
-				6B35175A18179A1400F0BD25 /* SPGooglePlacesAutocompleteUtilities.m */,
 				6B35175B18179A1400F0BD25 /* SPGooglePlacesPlaceDetailQuery.h */,
 				6B35175C18179A1400F0BD25 /* SPGooglePlacesPlaceDetailQuery.m */,
+				6B35175918179A1400F0BD25 /* SPGooglePlacesAutocompleteUtilities.h */,
+				6B35175A18179A1400F0BD25 /* SPGooglePlacesAutocompleteUtilities.m */,
 			);
 			name = SPGooglePlacesAutocomplete;
 			path = ../SPGooglePlacesAutocomplete;
