@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
   s.authors      = { "Matej Bukovinski" => "matej@bukovinski.com", "Chris Chen" => "chris.chen@tickbox.com.au" }
 
   s.platform     = :ios, '6.0'
-  s.source       = { :git => "https://github.com/chrischentickbox/SPGooglePlacesAutocomplete.git"}
+  s.source       = { :git => "https://github.com/chrischentickbox/SPGooglePlacesAutocomplete.git", :tag => '1.0.1'}
   s.source_files  = 'SPGooglePlacesAutocomplete/*.{h,m}'
   s.frameworks = 'CoreLocation'
   s.requires_arc = true
