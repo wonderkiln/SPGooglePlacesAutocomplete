@@ -7,8 +7,7 @@
 //
 
 #import "SPGooglePlacesAutocompleteViewController.h"
-#import "SPGooglePlacesAutocompleteQuery.h"
-#import "SPGooglePlacesAutocompletePlace.h"
+#import "SPGooglePlacesAutocomplete.h"
 
 @interface SPGooglePlacesAutocompleteViewController ()
 
