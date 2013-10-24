@@ -10,15 +10,13 @@
 #import "SPGooglePlacesPlaceDetailQuery.h"
 
 @interface SPGooglePlacesAutocompletePlace()
-@property (nonatomic, strong, readwrite) NSString *name;
-@property (nonatomic, strong, readwrite) NSString *reference;
-@property (nonatomic, strong, readwrite) NSString *identifier;
-@property (nonatomic, readwrite) SPGooglePlacesAutocompletePlaceType type;
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSString *reference;
+@property (nonatomic, strong) NSString *identifier;
+@property (nonatomic) SPGooglePlacesAutocompletePlaceType type;
 @end
 
 @implementation SPGooglePlacesAutocompletePlace
-
-@synthesize name, reference, identifier, type;
 
 + (SPGooglePlacesAutocompletePlace *)placeFromDictionary:(NSDictionary *)placeDictionary apiKey:(NSString *)apiKey
 {
@@ -33,7 +31,7 @@
 
 - (NSString *)description {
     return [NSString stringWithFormat:@"Name: %@, Reference: %@, Identifier: %@, Type: %@",
-            name, reference, identifier, SPPlaceTypeStringForPlaceType(type)];
+            self.name, self.reference, self.identifier, SPPlaceTypeStringForPlaceType(self.type)];
 }
 
 - (CLGeocoder *)geocoder {
@@ -75,7 +73,7 @@
 }
 
 - (void)resolveToPlacemark:(SPGooglePlacesPlacemarkResultBlock)block {
-    if (type == SPPlaceTypeGeocode) {
+    if (self.type == SPPlaceTypeGeocode) {
         // Geocode places already have their address stored in the 'name' field.
         [self resolveGecodePlaceToPlacemark:block];
     } else {

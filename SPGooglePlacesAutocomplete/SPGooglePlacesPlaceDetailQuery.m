@@ -9,12 +9,10 @@
 #import "SPGooglePlacesPlaceDetailQuery.h"
 
 @interface SPGooglePlacesPlaceDetailQuery()
-@property (nonatomic, copy, readwrite) SPGooglePlacesPlaceDetailResultBlock resultBlock;
+@property (nonatomic, copy) SPGooglePlacesPlaceDetailResultBlock resultBlock;
 @end
 
 @implementation SPGooglePlacesPlaceDetailQuery
-
-@synthesize reference, sensor, key, language, resultBlock;
 
 - (id)initWithApiKey:(NSString *)apiKey
 {
@@ -34,9 +32,9 @@
 
 - (NSString *)googleURLString {
     NSMutableString *url = [NSMutableString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/details/json?reference=%@&sensor=%@&key=%@",
-                            reference, SPBooleanStringForBool(sensor), key];
-    if (language) {
-        [url appendFormat:@"&language=%@", language];
+                            self.reference, SPBooleanStringForBool(self.sensor), self.key];
+    if (self.language) {
+        [url appendFormat:@"&language=%@", self.language];
     }
     return url;
 }

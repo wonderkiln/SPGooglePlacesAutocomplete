@@ -10,12 +10,10 @@
 #import "SPGooglePlacesAutocompletePlace.h"
 
 @interface SPGooglePlacesAutocompleteQuery()
-@property (nonatomic, copy, readwrite) SPGooglePlacesAutocompleteResultBlock resultBlock;
+@property (nonatomic, copy) SPGooglePlacesAutocompleteResultBlock resultBlock;
 @end
 
 @implementation SPGooglePlacesAutocompleteQuery
-
-@synthesize input, sensor, key, offset, location, radius, language, types, resultBlock;
 
 - (id)initWithApiKey:(NSString *)apiKey {
     self = [super init];
@@ -38,22 +36,22 @@
 
 - (NSString *)googleURLString {
     NSMutableString *url = [NSMutableString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/autocomplete/json?input=%@&sensor=%@&key=%@",
-                            [input stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
-                            SPBooleanStringForBool(sensor), key];
-    if (offset != NSNotFound) {
-        [url appendFormat:@"&offset=%u", offset];
+                            [self.input stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+                            SPBooleanStringForBool(self.sensor), self.key];
+    if (self.offset != NSNotFound) {
+        [url appendFormat:@"&offset=%u", self.offset];
     }
-    if (location.latitude != -1) {
-        [url appendFormat:@"&location=%f,%f", location.latitude, location.longitude];
+    if (self.location.latitude != -1) {
+        [url appendFormat:@"&location=%f,%f", self.location.latitude, self.location.longitude];
     }
-    if (radius != NSNotFound) {
-        [url appendFormat:@"&radius=%f", radius];
+    if (self.radius != NSNotFound) {
+        [url appendFormat:@"&radius=%f", self.radius];
     }
-    if (language) {
-        [url appendFormat:@"&language=%@", language];
+    if (self.language) {
+        [url appendFormat:@"&language=%@", self.language];
     }
-    if (types != SPPlaceTypeInvalid) {
-        [url appendFormat:@"&types=%@", SPPlaceTypeStringForPlaceType(types)];
+    if (self.types != SPPlaceTypeInvalid) {
+        [url appendFormat:@"&types=%@", SPPlaceTypeStringForPlaceType(self.types)];
     }
     return url;
 }
