@@ -25,7 +25,7 @@
         self.key = apiKey;
         self.offset = NSNotFound;
         self.location = CLLocationCoordinate2DMake(-1, -1);
-        self.radius = NSNotFound;
+        self.radius = 500;
         self.types = SPPlaceTypeInvalid;
     }
     return self;
