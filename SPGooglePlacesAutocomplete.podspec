@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
                    DESC
   s.homepage     = "https://github.com/chrischentickbox/SPGooglePlacesAutocomplete"
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
-  s.authors      = { "Matej Bukovinski" => "matej@bukovinski.com", "Chris Chen" => "chris.chen@tickbox.com.au" }
+  s.authors      = { "Matej Bukovinski" => "matej@bukovinski.com", "Chris Chen" => "chrischen79@gmail.com" }
 
   s.platform     = :ios, '6.0'
   s.source       = { :git => "https://github.com/chrischentickbox/SPGooglePlacesAutocomplete.git", :tag => '1.0.2'}
