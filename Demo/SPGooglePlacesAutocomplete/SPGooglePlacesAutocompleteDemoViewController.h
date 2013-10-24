@@ -1,5 +1,5 @@
 //
-//  SPGooglePlacesAutocompleteViewController.h
+//  SPGooglePlacesAutocompleteDemoViewController.h
 //  SPGooglePlacesAutocomplete
 //
 //  Created by Stephen Poletto on 7/17/12.
@@ -10,7 +10,7 @@
 
 @class SPGooglePlacesAutocompleteQuery;
 
-@interface SPGooglePlacesAutocompleteViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate, UISearchBarDelegate, MKMapViewDelegate> {
+@interface SPGooglePlacesAutocompleteDemoViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate, UISearchBarDelegate, MKMapViewDelegate> {
     NSArray *searchResultPlaces;
     SPGooglePlacesAutocompleteQuery *searchQuery;
     MKPointAnnotation *selectedPlaceAnnotation;

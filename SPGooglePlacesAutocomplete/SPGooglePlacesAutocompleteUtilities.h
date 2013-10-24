@@ -23,7 +23,6 @@ typedef void (^SPGooglePlacesPlaceDetailResultBlock)(NSDictionary *placeDictiona
 extern SPGooglePlacesAutocompletePlaceType SPPlaceTypeFromDictionary(NSDictionary *placeDictionary);
 extern NSString *SPBooleanStringForBool(BOOL boolean);
 extern NSString *SPPlaceTypeStringForPlaceType(SPGooglePlacesAutocompletePlaceType type);
-extern void SPPresentAlertViewWithErrorAndTitle(NSError *error, NSString *title);
 extern BOOL SPIsEmptyString(NSString *string);
 
 @interface NSArray(SPFoundationAdditions)

@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SPGooglePlacesAutocompleteViewController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SPGooglePlacesAutocompleteDemoViewController">
             <connections>
                 <outlet property="mapView" destination="7" id="8"/>
                 <outlet property="searchDisplayController" destination="10" id="12"/>

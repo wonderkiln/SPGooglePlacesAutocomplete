@@ -1,25 +1,25 @@
 //
-//  SPGooglePlacesAutocompleteViewController.m
+//  SPGooglePlacesAutocompleteDemoViewController.m
 //  SPGooglePlacesAutocomplete
 //
 //  Created by Stephen Poletto on 7/17/12.
 //  Copyright (c) 2012 Stephen Poletto. All rights reserved.
 //
 
-#import "SPGooglePlacesAutocompleteViewController.h"
+#import "SPGooglePlacesAutocompleteDemoViewController.h"
 #import "SPGooglePlacesAutocomplete.h"
 
-@interface SPGooglePlacesAutocompleteViewController ()
+@interface SPGooglePlacesAutocompleteDemoViewController ()
 
 @end
 
-@implementation SPGooglePlacesAutocompleteViewController
+@implementation SPGooglePlacesAutocompleteDemoViewController
 @synthesize mapView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        searchQuery = [[SPGooglePlacesAutocompleteQuery alloc] init];
+        searchQuery = [[SPGooglePlacesAutocompleteQuery alloc] initWithApiKey:@"AIzaSyCFVTNhNzuZpgWLcIdHD1qui5VeE-S22Wo"];
         searchQuery.radius = 100.0;
         shouldBeginEditing = YES;
     }
@@ -113,7 +113,12 @@
     SPGooglePlacesAutocompletePlace *place = [self placeAtIndexPath:indexPath];
     [place resolveToPlacemark:^(CLPlacemark *placemark, NSString *addressString, NSError *error) {
         if (error) {
-            SPPresentAlertViewWithErrorAndTitle(error, @"Could not map selected Place");
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Could not map selected Place"
+                                                            message:error.localizedDescription
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil, nil];
+            [alert show];
         } else if (placemark) {
             [self addPlacemarkAnnotationToMap:placemark addressString:addressString];
             [self recenterMapToPlacemark:placemark];
@@ -131,7 +136,12 @@
     searchQuery.input = searchString;
     [searchQuery fetchPlaces:^(NSArray *places, NSError *error) {
         if (error) {
-            SPPresentAlertViewWithErrorAndTitle(error, @"Could not fetch Places");
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Could not fetch Places"
+                                                            message:error.localizedDescription
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil, nil];
+            [alert show];
         } else {
             searchResultPlaces = places;
             [self.searchDisplayController.searchResultsTableView reloadData];

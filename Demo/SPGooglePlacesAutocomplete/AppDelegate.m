@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Stephen Poletto. All rights reserved.
 //
 
-#import "SPGooglePlacesAutocompleteViewController.h"
+#import "SPGooglePlacesAutocompleteDemoViewController.h"
 #import "AppDelegate.h"
 
 @implementation AppDelegate
@@ -16,12 +16,11 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    SPGooglePlacesAutocompleteViewController *viewController = [[SPGooglePlacesAutocompleteViewController alloc] init];
+    SPGooglePlacesAutocompleteDemoViewController *viewController = [[SPGooglePlacesAutocompleteDemoViewController alloc] init];
     self.window.rootViewController = viewController;
     [self.window makeKeyAndVisible];
     
     return YES;
 }
-
 
 @end

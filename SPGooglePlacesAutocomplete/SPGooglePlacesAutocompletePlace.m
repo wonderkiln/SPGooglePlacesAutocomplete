@@ -20,12 +20,14 @@
 
 @synthesize name, reference, identifier, type;
 
-+ (SPGooglePlacesAutocompletePlace *)placeFromDictionary:(NSDictionary *)placeDictionary {
++ (SPGooglePlacesAutocompletePlace *)placeFromDictionary:(NSDictionary *)placeDictionary apiKey:(NSString *)apiKey
+{
     SPGooglePlacesAutocompletePlace *place = [[self alloc] init];
     place.name = placeDictionary[@"description"];
     place.reference = placeDictionary[@"reference"];
     place.identifier = placeDictionary[@"id"];
     place.type = SPPlaceTypeFromDictionary(placeDictionary);
+    place.key = apiKey;
     return place;
 }
 
@@ -42,8 +44,7 @@
 }
 
 - (void)resolveEstablishmentPlaceToPlacemark:(SPGooglePlacesPlacemarkResultBlock)block {
-#warning Replace YOUR_API_KEY with your Google API key otherwise this demo won't work
-    SPGooglePlacesPlaceDetailQuery *query = [[SPGooglePlacesPlaceDetailQuery alloc] initWithApiKey:@"YOUR_API_KEY"];
+    SPGooglePlacesPlaceDetailQuery *query = [[SPGooglePlacesPlaceDetailQuery alloc] initWithApiKey:self.key];
     query.reference = self.reference;
     [query fetchPlaceDetail:^(NSDictionary *placeDictionary, NSError *error) {
         if (error) {

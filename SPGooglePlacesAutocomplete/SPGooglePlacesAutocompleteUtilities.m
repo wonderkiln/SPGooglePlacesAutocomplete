@@ -26,11 +26,6 @@ NSString *SPPlaceTypeStringForPlaceType(SPGooglePlacesAutocompletePlaceType type
     return (type == SPPlaceTypeGeocode) ? @"geocode" : @"establishment";
 }
 
-void SPPresentAlertViewWithErrorAndTitle(NSError *error, NSString *title) {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:[error localizedDescription] delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
-    [alert show];
-}
-
 extern BOOL SPIsEmptyString(NSString *string) {
     return !string || ![string length];
 }

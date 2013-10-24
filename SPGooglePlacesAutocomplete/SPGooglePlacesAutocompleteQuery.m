@@ -101,7 +101,7 @@
 - (void)succeedWithPlaces:(NSArray *)places {
     NSMutableArray *parsedPlaces = [NSMutableArray array];
     for (NSDictionary *place in places) {
-        [parsedPlaces addObject:[SPGooglePlacesAutocompletePlace placeFromDictionary:place]];
+        [parsedPlaces addObject:[SPGooglePlacesAutocompletePlace placeFromDictionary:place apiKey:self.key]];
     }
     if (self.resultBlock != nil) {
         self.resultBlock(parsedPlaces, nil);
