@@ -19,7 +19,7 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        searchQuery = [[SPGooglePlacesAutocompleteQuery alloc] initWithApiKey:@"AIzaSyCFVTNhNzuZpgWLcIdHD1qui5VeE-S22Wo"];
+        searchQuery = [[SPGooglePlacesAutocompleteQuery alloc] initWithApiKey:@"AIzaSyAFsaDn7vyI8pS53zBgYRxu0HfRwYqH-9E"];
         searchQuery.radius = 100.0;
         shouldBeginEditing = YES;
     }
@@ -174,7 +174,7 @@
         NSTimeInterval animationDuration = 0.3;
         [UIView beginAnimations:nil context:NULL];
         [UIView setAnimationDuration:animationDuration];
-        self.searchDisplayController.searchResultsTableView.alpha = 1.0;
+        self.searchDisplayController.searchResultsTableView.alpha = 0.75;
         [UIView commitAnimations];
         
         [self.searchDisplayController.searchBar setShowsCancelButton:YES animated:YES];
