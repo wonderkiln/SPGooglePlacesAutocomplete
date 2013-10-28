@@ -13,36 +13,31 @@ How To Use It
 -------------
 
 ### Requirements
-SPGooglePlacesAutocomplete requires a deployment target >= iOS 5.0.
+SPGooglePlacesAutocomplete requires a deployment target >= iOS 6.0 and ARC.
 
 ### Installation
-1. Link your project against the CoreLocation framework.
-2. Copy the following files to your project:
-    * SPGooglePlacesAutocompleteUtilities.h/.m
-    * SPGooglePlacesAutocompleteQuery.h/.m
-    * SPGooglePlacesPlaceDetailQuery.h/.m
-    * SPGooglePlacesAutocompletePlace.h/.m
-3. (Optional) If you would like to utilize the provided sample view controller for searching and mapping Places, link your project against the MapKit framework and copy the following files to your project:
-    * SPGooglePlacesAutocompleteViewController.h/.m/.xib
-    * locateButton(@2x).png
-    * location(@2x).png
-4. Open SPGooglePlacesAutocompleteUtilities.h and replace `kGoogleAPIKey` with your Google API key. You can find your API key in the [Google APIs Console](https://code.google.com/apis/console).
+[CocoaPods](http://cocoapods.org) is the recommended way to add SPGooglePlacesAutocomplete to your project.
+
+1. Add a pod entry `pod 'SPGooglePlacesAutocomplete'` to to your Podfile.
+2. Run `pod install` or `pod update`.
+3. Include SPGooglePlacesAutocomplete wherever you need it with `#import "SPGooglePlacesAutocomplete.h"`.
+
 
 ### Performing Queries
 
 Instantiate a new SPGooglePlacesAutocompleteQuery and fill in the properties you'd like to specify.
 
 ``` objective-c
-#import "SPGooglePlacesAutocompleteQuery.h"
+#import "SPGooglePlacesAutocomplete.h"
 
 ...
 
-SPGooglePlacesAutocompleteQuery *query = [SPGooglePlacesAutocompleteQuery query];
-query.input = @"185 berry str";
-query.radius = 100.0;
-query.language = @"en";
+SPGooglePlacesAutocompleteQuery *query = [[SPGooglePlacesAutocompleteQuery alloc] initWithApiKey:@"YourGoogleAPIKey"];
+query.input = @"185 berry str"; // search key word
+query.location = CLLocationCoordinate2DMake(37.76999, -122.44696);  // user's current location
+query.radius = 100.0;   // search addresses close to user
+query.language = @"en"; // optional
 query.types = SPPlaceTypeGeocode; // Only return geocoding (address) results.
-query.location = CLLocationCoordinate2DMake(37.76999, -122.44696);
 ```
 
 Then, call -fetchPlaces to ping Google's API and fetch results. The resulting array will return objects of the SPGooglePlacesAutocompletePlace class.
@@ -74,5 +69,4 @@ When searching for "geocode" (address) Places, the library utilizes CLGeocoder t
 
 ### Sample Code
 
-For an example of how to use SPGooglePlacesAutocomplete, please see the included example project. Be sure to replace `kGoogleAPIKey` with your Google API key!
-
+For an example of how to use SPGooglePlacesAutocomplete, please see the included example project. I put a functional Google API key in the project, please don't use it elsewhere!
