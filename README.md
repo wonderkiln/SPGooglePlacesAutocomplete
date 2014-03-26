@@ -16,10 +16,8 @@ How To Use It
 SPGooglePlacesAutocomplete requires a deployment target >= iOS 6.0 and ARC.
 
 ### Installation
-[CocoaPods](http://cocoapods.org) is the recommended way to add SPGooglePlacesAutocomplete to your project.
-
-1. Add a pod entry `pod 'SPGooglePlacesAutocomplete'` to to your Podfile.
-2. Run `pod install` or `pod update`.
+1. Create a new group in your project
+2. Drag all the files from <clone directory>/SPGooglePlacesAutocomplete into this group
 3. Include SPGooglePlacesAutocomplete wherever you need it with `#import "SPGooglePlacesAutocomplete.h"`.
 
 
