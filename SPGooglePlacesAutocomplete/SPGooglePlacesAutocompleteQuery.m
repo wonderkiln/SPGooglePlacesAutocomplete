@@ -53,6 +53,9 @@
     if (self.types != SPPlaceTypeInvalid) {
         [url appendFormat:@"&types=%@", SPPlaceTypeStringForPlaceType(self.types)];
     }
+    if (self.countryCode != nil) {
+        [url appendFormat:@"&components=country:%@", self.countryCode];
+    }
     return url;
 }
 
